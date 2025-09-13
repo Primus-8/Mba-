@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MBA Profile Submission</title>
+<script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+<script>
+(function(){
+   emailjs.init("hjZ1MvYyQ3ZcmpCvO"); // Public API key
+})();
+
+function sendEmail() {
+   const templateParams = {
+      name: document.getElementById("name").value,
+      grad: document.getElementById("grad").value,
+      work: document.getElementById("work").value,
+      cat: document.getElementById("cat").value,
+      xat: document.getElementById("xat").value,
+      gmat: document.getElementById("gmat").value,
+      cmat: document.getElementById("cmat").value,
+      mat: document.getElementById("mat").value,
+      extra: document.getElementById("extra").value,
+      cert: document.getElementById("cert").value,
+      result: document.getElementById("result").value
+   };
+
+   emailjs.send("service_4vpyame", "template_k4e22eu", templateParams)
+   .then(function(response) {
+      alert("Submitted successfully!");
+      document.getElementById("profileForm").reset();
+   }, function(error) {
+      alert("Error! Please try again.");
+   });
+}
+</script>
+<style>
+body { font-family: Arial, sans-serif; margin:20px; background-color: #f5f5f5; }
+h2 { text-align:center; color:#333; }
+form { max-width:500px; margin:0 auto; background:#fff; padding:20px; border-radius:8px; box-shadow:0 2px 6px rgba(0,0,0,0.1); }
+input, textarea { width: 100%; padding:10px; margin:8px 0; box-sizing: border-box; border:1px solid #ccc; border-radius:4px; }
+textarea { resize: vertical; min-height:80px; }
+button { width: 100%; padding:12px; background-color: #007BFF; color:white; border:none; border-radius:4px; font-size:16px; cursor:pointer; }
+button:hover { background-color: #0056b3; }
+@media (max-width:600px){ form { padding:15px; } button { font-size:14px; } }
+</style>
+</head>
+<body>
+<h2>MBA Profile Submission</h2>
+<form id="profileForm" onsubmit="event.preventDefault(); sendEmail();">
+  <input type="text" id="name" placeholder="Name" required>
+  <input type="number" id="grad" placeholder="Graduation %" required>
+  <input type="number" id="work" placeholder="Work Experience (years)">
+  <input type="number" id="cat" placeholder="CAT Score">
+  <input type="number" id="xat" placeholder="XAT Score">
+  <input type="number" id="gmat" placeholder="GMAT Score">
+  <input type="number" id="cmat" placeholder="CMAT Score">
+  <input type="number" id="mat" placeholder="MAT Score">
+  <input type="text" id="extra" placeholder="Extra Curricular">
+  <input type="text" id="cert" placeholder="Certifications">
+  <textarea id="result" placeholder="Profile Result"></textarea>
+  <button type="submit">Submit</button>
+</form>
+</body>
+  </html>
